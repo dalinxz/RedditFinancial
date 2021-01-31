@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
+        {{ form.search_box.label}} {{ form.search_box()}}
+        {{ form.search() }}
+    </form>
+    <h2>test1</h2>
+    <script src='https://redditjs.com/post.js' data-url='https://www.reddit.com/r/redditdev/comments/g7azzu/how_to_view_posts_on_reddit_using_reddit_api/' data-height='500' data-width='650' data-post-finder='mostComments' data-theme='dark' data-show-submit='true'></script>
+{% endblock %}
