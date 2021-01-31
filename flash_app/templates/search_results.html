@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Just kidding he has 2 but he has a small dik</h2>
+    <h2>test2</h2>
+    {{ form.hidden_tag() }}
+    {{ form.csrf_token }}
+    {{ form.search() }}
 {% endblock %}

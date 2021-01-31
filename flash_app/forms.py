@@ -19,4 +19,5 @@ class front_page_form(FlaskForm):
     search = SubmitField('Search')
 
 class search_results_form(FlaskForm):
-    search = SubmitField('')
+    search_box = StringField('', validators=[DataRequired()])
+    search = SubmitField('Search')
