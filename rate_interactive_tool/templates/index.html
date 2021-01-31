@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
+        {{ form.search_box.label}} {{ form.search_box()}}
+        {{ form.search() }}
+    </form>
+    <h2>Akash only has 1 ball. The other one was emptied at 4pm on January 30th, 2021</h2>
+{% endblock %}

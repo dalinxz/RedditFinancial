@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Plot Data</h2>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>{{ form.participant.label }} {{ form.participant() }}</p>
+        <p>{{ form.start_month.label }} {{ form.start_month() }} {{ form.start_day.label }} {{ form.start_day() }}</p>
+        <p>{{ form.end_month.label }} {{ form.end_month() }} {{ form.end_day.label }} {{ form.end_day() }}</p>
+        <p>
+            <input type="checkbox" name="filter_val" value="rr_threshold"> Oura RR Threshold {{ form.threshold() }}
+        </p>
+        <p> Sleep: 
+            <input type="checkbox" name="sleep_val" value=0> All
+            <input type="checkbox" name="sleep_val" value=1> Deep
+            <input type="checkbox" name="sleep_val" value=2> Light
+            <input type="checkbox" name="sleep_val" value=3> REM
+        </p>
+        <p> Motion: 
+            <input type="checkbox" name="motion_val" value=0> 0
+            <input type="checkbox" name="motion_val" value=1> 1
+            <input type="checkbox" name="motion_val" value=2> 2
+            <input type="checkbox" name="motion_val" value=3> 3
+            <input type="checkbox" name="motion_val" value=4> 4
+            <input type="checkbox" name="motion_val" value=5> 5
+            <input type="checkbox" name="motion_val" value=6> 6
+            <input type="checkbox" name="motion_val" value=7> 7
+            <input type="checkbox" name="motion_val" value=8> All
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+	<hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    <body>
+        {{ the_div|safe }}
+        <script src="http://cdn.pydata.org/bokeh/release/bokeh-1.4.0.min.js" 
+		crossorigin="anonymous"></script>
+        <script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-1.4.0.min.js"
+		crossorigin="anonymous"></script>
+        {{ the_script|safe }}
+    </body>
+{% endblock %}
+
