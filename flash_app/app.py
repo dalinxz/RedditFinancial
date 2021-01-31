@@ -28,22 +28,8 @@ app = Flask(__name__)             # create an app instance
 app.config['SECRET_KEY'] = 'you-will-never-guess'
 @app.route("/", methods=['GET', 'POST'])              # at the end point /<name>
 def index():
-    filter_val = [0,0,0]
-    if 'WSB' in request.form.getlist('filter'):
-        filter_val[0] = 1
-    if 'OP' in request.form.getlist('filter'):
-        filter_val[1] = 1
-    if 'FI' in request.form.getlist('filter'):
-        filter_val[2] = 1
-    session['filter_values'] = filter_val
-    return redirect('/index_filter')
-    return render_template('index.html')
-
-@app.route("/index_filter", methods=['GET', 'POST'])              # at the end point /<name>
-def index_filter():
     form = front_page_form()
-    filter_val = session.get('filter_val', None)
-    get_data = get_top_3(filter_val)
+    get_data = get_top_3()
     data = [{'url': get_data[0]}, 
             {'url': get_data[1]},
             {'url': get_data[2]}
@@ -231,7 +217,7 @@ def pick_posts(dfwsb, dfoptions, dffinind, radio, time_check = time.time() - 259
   else: 
     pass
 
-def get_top_3(filter_val):
+def get_top_3():
     wsb_df = pd.read_csv('https://raw.githubusercontent.com/enanpurrp/Debullshitiser/main/wallstreetbets(1).csv')
     options_df = pd.read_csv('https://raw.githubusercontent.com/enanpurrp/Debullshitiser/main/options(1).csv')
     finind_df = pd.read_csv('https://raw.githubusercontent.com/enanpurrp/Debullshitiser/main/financialindependence(2).csv')
@@ -264,7 +250,7 @@ def get_top_3(filter_val):
     scorer(options_df)
     scorer(finind_df)
 
-    filter = filter_val
+    filter = [1,1,1]
 
     return pick_posts(wsb_df, options_df, finind_df, filter)
 
@@ -308,7 +294,7 @@ def search_engine(huge_df, input_text):
 
 
 if __name__ == "__main__":
-    port_used = 5000
+    port_used = 5001
     app.run(port=port_used) 
                           # run the flask app
     

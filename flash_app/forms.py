@@ -20,3 +20,6 @@ class front_page_form(FlaskForm):
 
 class search_results_form(FlaskForm):
     search = SubmitField('Search')
+
+class index_form(FlaskForm):
+    search = SubmitField('Search')
