@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
+
+{% block content %}
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,12 +13,14 @@
     </style>
   </head>
   <body>
-  <div id="grad1" align="center">
+  <div align="center">
     {{ form.hidden_tag() }}
     {{ form.csrf_token }}
     <h1>     </h1>
-    {{ form.search_box.label}} {{ form.search_box()}}
-    {{ form.search() }}
+    <p><input type="checkbox" name="filter" value="WSB"> WSB
+    <input type="checkbox" name="filter" value="OP"> Options
+    <input type="checkbox" name="filter" value="FI"> Financial Independence
+    </p>
   <section class="section">
     <div class="container">
       <div class="box" style="width:1350px" align="center">
@@ -97,12 +100,12 @@
         })
             .then(res => res.json())
             .then(response => {
-        document.getElementById("mytitle1").innerHTML = response.title
-        document.getElementById("mydescription1").innerHTML = response.description
-        document.getElementById("myimage1").src = response.image
-        document.getElementById("myurl1").innerHTML = response.url
+        document.getElementById("mytitle2").innerHTML = response.title
+        document.getElementById("mydescription2").innerHTML = response.description
+        document.getElementById("myimage2").src = response.image
+        document.getElementById("myurl2").innerHTML = response.url
         })
         </script>
   </body>
   </body>
-</html>
+{% endblock %}

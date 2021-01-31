@@ -1,8 +1,100 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>test2</h2>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <style> 
+    #grad1{
+        height: 100%;
+        background-image: linear-gradient(180deg, rgb(232, 230, 235), rgb(5, 7, 168));
+    }
+    </style>
+  </head>
+  <body>
+  <div id="grad1" align="center">
     {{ form.hidden_tag() }}
     {{ form.csrf_token }}
+    <h1>     </h1>
+    {{ form.search_box.label}} {{ form.search_box()}}
     {{ form.search() }}
+  <section class="section">
+    <div class="container">
+      <div class="box" style="width:1350px" align="center">
+        <div class="is-clipped">
+          <div class="mt-2">{{ data[0] }}</div>
+        </div>
+      </div>
+      <div class="box" style="width:1350px" align="center">
+        <div class="is-clipped">
+          <div class="mt-2"> {{ data[1] }}</div>
+        </div>
+      </div>
+      <div class="box" style="width:1350px" align="center">
+        <div class="is-clipped">
+          <div class="mt-2"> {{ data[2] }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <script type="text/javascript">
+        var data = [
+            `{% for item in data %}   
+                {{ item|safe }} 
+            {% endfor %}`
+        ]
+        console.log(data)
+        var url = '{{ data[0].url }}'
+        var data = {key: '22cc141e4de4deb78e11f2cd7121c973', q: url}
+
+        fetch('https://api.linkpreview.net', {
+        method: 'POST',
+        mode: 'cors',
+        body: JSON.stringify(data),
+        })
+        .then(res => res.json())
+        .then(response => {
+        document.getElementById("mytitle").innerHTML = response.title
+        document.getElementById("mydescription").innerHTML = response.description
+        document.getElementById("myimage").src = response.image
+        document.getElementById("myurl").innerHTML = response.url
+        })
+    </script>
+    <script type="text/javascript">
+        var url = '{{ data[1].url }}'
+        var data = {key: '22cc141e4de4deb78e11f2cd7121c973', q: url}
+
+        fetch('https://api.linkpreview.net', {
+            method: 'POST',
+            mode: 'cors',
+            body: JSON.stringify(data),
+        })
+            .then(res => res.json())
+            .then(response => {
+        document.getElementById("mytitle1").innerHTML = response.title
+        document.getElementById("mydescription1").innerHTML = response.description
+        document.getElementById("myimage1").src = response.image
+        document.getElementById("myurl1").innerHTML = response.url
+        })
+        </script>
+    <script type="text/javascript">
+        var url = '{{ data[2].url }}'
+        var data = {key: '22cc141e4de4deb78e11f2cd7121c973', q: url}
+
+        fetch('https://api.linkpreview.net', {
+            method: 'POST',
+            mode: 'cors',
+            body: JSON.stringify(data),
+        })
+            .then(res => res.json())
+            .then(response => {
+        document.getElementById("mytitle2").innerHTML = response.title
+        document.getElementById("mydescription2").innerHTML = response.description
+        document.getElementById("myimage2").src = response.image
+        document.getElementById("myurl2").innerHTML = response.url
+        })
+        </script>
+  </body>
+  </body>
 {% endblock %}

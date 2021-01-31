@@ -15,9 +15,8 @@ from datetime import datetime
 from datetime import timedelta
 
 class front_page_form(FlaskForm):
-    search_box = StringField('', validators=[DataRequired()])
+    search_box = StringField('')
     search = SubmitField('Search')
 
 class search_results_form(FlaskForm):
-    search_box = StringField('', validators=[DataRequired()])
     search = SubmitField('Search')
